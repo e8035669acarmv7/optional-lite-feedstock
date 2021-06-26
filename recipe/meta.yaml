@@ -11,8 +11,7 @@ source:
   sha256: 49b9deac842b3698fc9011b7678f943b4e36136e2ab711f535c1961ff2746e14
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
 
 requirements:
   build:
@@ -25,7 +24,8 @@ requirements:
 
 test:
   commands:
-    - test -f $PREFIX/include/nonstd/optional.hpp
+    - test -f $PREFIX/include/nonstd/optional.hpp  # [unix]
+    - if not exist %LIBRARY_INC%\\nonstd\\optional.hpp exit 1  # [win]
 
 about:
   home: https://github.com/martinmoene/optional-lite
